@@ -1,0 +1,59 @@
+schema = "animus.plugin.v1"
+name = "animus-subject-datacite-dois"
+version = "0.1.0"
+plugin_kind = "subject_backend"
+description = "DataCite DOI metadata subject backend plugin for Animus"
+protocol = "stdio"
+
+[binary]
+default = "animus-subject-datacite-dois"
+
+[capabilities]
+streaming = false
+progress = false
+cancellation = false
+methods = [
+  "subject/list",
+  "subject/get",
+  "subject/schema",
+  "datacite.doi/list",
+  "datacite.doi/get",
+  "datacite.doi/schema",
+  "health/check",
+]
+subject_kinds = ["datacite.doi"]
+
+[[env]]
+key = "DATACITE_QUERY"
+description = "Optional DOI metadata search query. Defaults to machine learning."
+required = false
+
+[[env]]
+key = "DATACITE_RESOURCE_TYPE"
+description = "Optional DataCite resource type filter, such as Dataset or Software."
+required = false
+
+[[env]]
+key = "DATACITE_PUBLISHER"
+description = "Optional DataCite publisher ID filter."
+required = false
+
+[[env]]
+key = "DATACITE_REGISTERED"
+description = "Optional registered date range filter supported by DataCite."
+required = false
+
+[[env]]
+key = "DATACITE_API_URL"
+description = "Optional DataCite API base URL. Defaults to https://api.datacite.org."
+required = false
+
+[[env]]
+key = "DATACITE_LOCAL_QUERY"
+description = "Optional local text query applied to DOI records after fetch."
+required = false
+
+[[env]]
+key = "DATACITE_LIMIT"
+description = "Optional maximum DOI count from 1 to 1000. Defaults to 50."
+required = false
